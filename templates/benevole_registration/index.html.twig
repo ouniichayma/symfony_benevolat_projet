@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription Bénévole{% endblock %}
+
+{% block body %}
+    <section class="volunteer-section section-padding" id="section_4">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-6 col-12">
+                    <h2 class="text-white mb-4">Volunteer</h2>
+
+                    <!-- Début du formulaire d'inscription -->
+                    {{ form_start(form, {'attr': {'class': 'custom-form volunteer-form mb-5 mb-lg-0', 'role': 'form'}}) }}
+                    <h3 class="mb-4">Become a volunteer today</h3>
+
+                    <div class="row">
+                        <!-- Nom -->
+                        <div class="col-lg-6 col-12">
+                            {{ form_row(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                        </div>
+
+                        <!-- Prénom -->
+                        <div class="col-lg-6 col-12">
+                            {{ form_row(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                        </div>
+
+                        <!-- Date de Naissance -->
+                        <div class="col-lg-6 col-12">
+                            {{ form_row(form.dateNaissance, {'attr': {'class': 'form-control', 'placeholder': 'Date de naissance'}}) }}
+                        </div>
+
+                        <!-- Expérience -->
+                        <div class="col-lg-6 col-12">
+                            {{ form_row(form.experience, {'attr': {'class': 'form-control', 'placeholder': 'Expérience'}}) }}
+                        </div>
+
+                        <!-- Compétences -->
+                        <div class="col-lg-6 col-12">
+                            {{ form_row(form.skills, {'attr': {'class': 'form-control', 'placeholder': 'Compétences'}}) }}
+                        </div>
+
+                        <!-- telephone -->
+                        <div class="col-lg-6 col-12">
+                            {{ form_row(form.numtel, {'attr': {'class': 'form-control', 'placeholder': 'telephone'}}) }}
+                        </div>
+
+
+                        <!-- adresse -->
+                        <div class="col-lg-6 col-12">
+                            {{ form_row(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'adresse'}}) }}
+                        </div>
+
+
+
+
+                        <!-- email -->
+                        <div class="col-lg-6 col-12">
+                            {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'email'}}) }}
+                        </div>
+
+                        <!-- Mot de Passe -->
+                        <div class="col-lg-6 col-12">
+                            {{ form_row(form.motPasse, {'attr': {'class': 'form-control', 'placeholder': 'Mot de passe'}}) }}
+                        </div>
+
+                    </div>
+
+                    <!-- Bouton de soumission -->
+                    <button type="submit" class="form-control btn btn-primary">S'inscrire</button>
+
+
+                    <p>Vous avez déjà un compte ? <a href="{{ path('login') }}">Connectez-vous ici</a></p>
+
+                    {{ form_end(form) }}
+                    <!-- Fin du formulaire -->
+
+
+
+
+                </div>
+
+                <!-- Section image et description -->
+                <div class="col-lg-6 col-12">
+                    <img src="{{ asset('assets/images/smiling-casual-woman-dressed-volunteer-t-shirt-with-badge.jpg') }}"
+                         class="volunteer-image img-fluid" alt="Volunteer">
+
+                    <div class="custom-block-body text-center">
+                        <h4 class="text-white mt-lg-3 mb-lg-3">About Volunteering</h4>
+
+                        <p class="text-white">Lorem Ipsum dolor sit amet, consectetur adipsicing kengan omeg kohm
+                            tokito Professional charity theme based</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

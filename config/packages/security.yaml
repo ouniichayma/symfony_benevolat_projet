@@ -1,0 +1,56 @@
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+    providers:
+        benevole_provider:
+            entity:
+                class: App\Entity\Benevole
+                property: email  # Utilisation du champ email pour l'authentification des bénévoles
+
+        association_provider:
+            entity:
+                class: App\Entity\Association
+                property: email  # Utilisation du champ email pour l'authentification des associations
+
+    firewalls:
+        # Firewall pour les bénévoles
+        main:
+            pattern: ^/
+            provider: benevole_provider
+            form_login:
+                login_path: login
+                check_path: login
+                default_target_path: /dashboard_benevole  # Redirection après login
+            logout:
+                path: /logout
+                target: /
+            stateless: false
+
+        # Firewall pour les associations
+        association:
+            pattern: ^/association
+            provider: association_provider
+            form_login:
+                login_path: login_association
+                check_path: login_association
+                default_target_path: /dashboard_association  # Redirection après login
+            logout:
+                path: /association/logout
+                target: /association
+            stateless: false
+
+
+    access_control:
+
+
+        # Deny authenticated users from accessing these pages
+        - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # Redirect authenticated users to the dashboard
+        - { path: ^/dashboard, roles: ROLE_USER }
+
+
+
+
+
