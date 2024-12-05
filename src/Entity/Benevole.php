@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: "benevole")]
-class Benevole extends Utilisateur implements UserInterface,PasswordAuthenticatedUserInterface
+class Benevole extends Utilisateur
 {
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -55,19 +55,7 @@ class Benevole extends Utilisateur implements UserInterface,PasswordAuthenticate
         return ['ROLE_BENEVOLE']; // Vous pouvez ajouter d'autres rôles si nécessaire
     }
 
-    public function getSalt(): ?string
-    {
-        return null; // Vous pouvez retourner null si un algorithme comme bcrypt est utilisé
-    }
-    public function getUserIdentifier(): string
-    {
-        return $this->email; // Use the email or any unique identifier
-    }
 
-    public function eraseCredentials(): void
-    {
-        // Clear sensitive data if necessary (e.g., plain password), otherwise leave empty
-    }
 
 
 

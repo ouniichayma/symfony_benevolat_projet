@@ -4,13 +4,14 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity]
 #[ORM\Table(name: "utilisateur")]
 #[ORM\InheritanceType("JOINED")]
 #[ORM\DiscriminatorColumn(name: "role", type: "string")]
-#[ORM\DiscriminatorMap(["benevole" => Benevole::class, "association" => Association::class])]
-class Utilisateur
+#[ORM\DiscriminatorMap(["ROLE_BENEVOLE" => Benevole::class, "ROLE_ASSOCIATION" => Association::class])]
+class Utilisateur implements UserInterface,PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -122,4 +123,31 @@ class Utilisateur
     {
         return $this::class; // Retourne le nom de la classe qui correspond au rôle
     }
+
+    public function getRoles(): array
+    {
+        return [$this->getRole()]; // Retourne un tableau contenant le rôle
+    }
+
+    public function getPassword(): string
+    {
+        return $this->motPasse;
+    }
+
+    public function getSalt()
+    {
+
+    }
+
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email; // Use the email or any unique identifier
+    }
+
+    public function eraseCredentials(): void
+    {
+        // Clear sensitive data if necessary (e.g., plain password), otherwise leave empty
+    }
+
 }

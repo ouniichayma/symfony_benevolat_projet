@@ -12,6 +12,26 @@ use App\Entity\Mission;
 
 class BenevoleController extends AbstractController
 {
+
+
+
+
+    #[Route('/dashboard_benevole', name: 'dashboard_benevole')]
+    public function dashboard(): Response
+    {
+        return $this->render('benevole/dashboard.html.twig');
+    }
+
+
+
+
+
+
+
+
+
+
+
     #[Route('/benevole', name: 'benevole_index')]
     public function index(EntityManagerInterface $entityManager): Response
     {
